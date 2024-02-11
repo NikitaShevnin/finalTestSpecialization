@@ -1,0 +1,762 @@
+Index: src/db/Animals_db.sql
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/db/Animals_db.sql b/src/db/Animals_db.sql
+new file mode 100644
+--- /dev/null	
++++ b/src/db/Animals_db.sql	
+@@ -0,0 +1,217 @@
++DROP DATABASE IF EXISTS `human_friends`;
++
++-- Создаем базу данных "human_friends", если ее еще нет
++CREATE DATABASE IF NOT EXISTS `human_friends`;
++
++-- Используем созданную базу данных
++USE `human_friends`;
++
++-- Создаем таблицу "animals"
++CREATE TABLE `animals` (
++  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
++  animals_class VARCHAR(30)
++);
++
++
++-- Создаем таблицу "dogs" с внешним ключом на таблицу "animals"
++CREATE TABLE `dogs` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  FOREIGN KEY (`animal_class_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE
++);
++
++-- Создаем таблицу "cats" с внешним ключом на таблицу "animals"
++CREATE TABLE `cats` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  FOREIGN KEY (`animal_class_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE
++);
++
++-- Создаем таблицу "hamsters" с внешним ключом на таблицу "animals"
++CREATE TABLE `hamsters` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  FOREIGN KEY (`animal_class_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE
++);
++
++
++-- Создаем таблицу "horses" с внешним ключом на таблицу "animals"
++CREATE TABLE `horses` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  FOREIGN KEY (`animal_class_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE
++);
++
++-- Создаем таблицу "camels" с внешним ключом на таблицу "animals"
++CREATE TABLE `camels` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  FOREIGN KEY (`animal_class_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE
++);
++
++-- Создаем таблицу "donkeys" с внешним ключом на таблицу "animals"
++CREATE TABLE `donkeys` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  FOREIGN KEY (`animal_class_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE
++);
++
++-- Заполняем таблицу "animals"
++INSERT INTO `human_friends`.`animals` (`id`, `animals_class`) VALUES ('1', 'pet'),('2', 'wild');
++
++-- Заполняем таблицу "dogs"
++INSERT INTO `human_friends`.`dogs` (`name`, `skills`, `birth_date`, `animal_class_id`) VALUES
++  ('Buddy', 'Sit, Stay, Fetch', '2019-02-10', 1),
++  ('Max', 'Roll over, Shake hands', '2018-06-15', 1),
++  ('Bailey', 'Play dead, Jump', '2020-01-05', 1),
++  ('Charlie', 'Speak, Catch', '2017-09-20', 1),
++  ('Luna', 'Bark, Spin', '2016-12-08', 1);
++
++-- Заполняем таблицу "cats"
++INSERT INTO `human_friends`.`cats` (`name`, `skills`, `birth_date`, `animal_class_id`) VALUES
++  ('Oliver', 'Purr, Pounce', '2018-04-25', 1),
++  ('Leo', 'Groom, Sleep', '2019-07-10', 1),
++  ('Milo', 'Climb, Hunt', '2020-03-17', 1),
++  ('Lily', 'Stretch, Chase', '2017-11-30', 1),
++  ('Simba', 'Meow, Play', '2016-09-12', 1);
++
++-- Заполняем таблицу "hamsters"
++INSERT INTO `human_friends`.`hamsters` (`name`, `skills`, `birth_date`, `animal_class_id`) VALUES
++  ('Coco', 'Run on the wheel', '2021-01-03', 1),
++  ('Peanut', 'Hide food, Burrow', '2022-02-14', 1),
++  ('Oreo', 'Climb tubes', '2020-11-20', 1),
++  ('Biscuit', 'Cheek pouches, Dig', '2019-10-05', 1),
++  ('Hazel', 'Gnaw, Explore', '2023-04-01', 1);
++
++-- Заполняем таблицу "horses"
++INSERT INTO `human_friends`.`horses` (`name`, `skills`, `birth_date`, `animal_class_id`) VALUES
++  ('Spirit', 'Gallop, Jump', '2015-08-20', 2),
++  ('Daisy', 'Trot, Lunge', '2016-06-10', 2),
++  ('Apollo', 'Dressage, Canter', '2017-03-15', 2),
++  ('Willow', 'Trail riding, Vaulting', '2018-11-25', 2),
++  ('Rocky', 'Western riding, Reining', '2019-09-05', 2);
++
++-- Заполняем таблицу "camels"
++INSERT INTO `human_friends`.`camels` (`name`, `skills`, `birth_date`, `animal_class_id`) VALUES
++  ('Sahara', 'Carry loads, Long trek', '2014-12-01', 2),
++  ('Amir', 'Desert navigation, Endurance', '2015-10-18', 2),
++  ('Zara', 'Pack saddle, Camel race', '2016-07-24', 2),
++  ('Raja', 'Camel ride, Milk production', '2017-04-09', 2),
++  ('Jamal', 'Hump storage, Adaptation', '2018-02-15', 2);
++
++-- Заполняем таблицу "donkeys"
++INSERT INTO `human_friends`.`donkeys` (`name`, `skills`, `birth_date`, `animal_class_id`) VALUES
++  ('Jack', 'Carry load, Braying', '2019-08-12', 2),
++  ('Jenny', 'Grazing, Guarding', '2020-05-05', 2),
++  ('Molly', 'Plowing, Companion', '2021-02-20', 2),
++  ('Oscar', 'Stubbornness, Towing', '2022-09-10', 2),
++  ('Rosie', 'Trick training, Therapy', '2023-06-05', 2);
++  
++-- Удалить таблицу "camels"
++  DROP TABLE `human_friends`.`camels`;
++  
++-- Объединить таблицы "horses", и "donkeys" в одну таблицу
++-- Создаем новую таблицу "horses_and_donkeys" для объединения "horses" и "donkeys"
++CREATE TABLE `horses_and_donkeys` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  `species` VARCHAR(10) NOT NULL,
++  PRIMARY KEY (`id`)
++);
++
++-- Вставляем данные из "horses" в таблицу "horses_and_donkeys"
++INSERT INTO `horses_and_donkeys` (`name`, `skills`, `birth_date`, `animal_class_id`, `species`)
++SELECT `name`, `skills`, `birth_date`, `animal_class_id`, 'Horse' AS `species`
++FROM `horses`;
++
++-- Вставляем данные из "donkeys" в таблицу "horses_and_donkeys"
++INSERT INTO `horses_and_donkeys` (`name`, `skills`, `birth_date`, `animal_class_id`, `species`)
++SELECT `name`, `skills`, `birth_date`, `animal_class_id`, 'Donkey' AS `species`
++FROM `donkeys`;
++
++-- Создаем новую таблицу "young_animals"
++CREATE TABLE `young_animals` (
++  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
++  `name` VARCHAR(50) NOT NULL,
++  `species` VARCHAR(20) NOT NULL,
++  `age_months` INT NOT NULL
++);
++
++-- Вставляем данные из таблиц `dogs`, `cats`, `donkeys`, `hamsters`, и `horses` в таблицу `young_animals`
++INSERT INTO `young_animals` (`name`, `species`, `age_months`)
++SELECT `name`, 'Dog' AS `species`, TIMESTAMPDIFF(MONTH, `birth_date`, CURDATE()) AS `age_months`
++FROM `dogs`
++WHERE `birth_date` <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND `birth_date` >= DATE_SUB(CURDATE(), INTERVAL 3 YEAR);
++
++INSERT INTO `young_animals` (`name`, `species`, `age_months`)
++SELECT `name`, 'Cat' AS `species`, TIMESTAMPDIFF(MONTH, `birth_date`, CURDATE()) AS `age_months`
++FROM `cats`
++WHERE `birth_date` <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND `birth_date` >= DATE_SUB(CURDATE(), INTERVAL 3 YEAR);
++
++INSERT INTO `young_animals` (`name`, `species`, `age_months`)
++SELECT `name`, 'Donkey' AS `species`, TIMESTAMPDIFF(MONTH, `birth_date`, CURDATE()) AS `age_months`
++FROM `donkeys`
++WHERE `birth_date` <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND `birth_date` >= DATE_SUB(CURDATE(), INTERVAL 3 YEAR);
++
++INSERT INTO `young_animals` (`name`, `species`, `age_months`)
++SELECT `name`, 'Hamster' AS `species`, TIMESTAMPDIFF(MONTH, `birth_date`, CURDATE()) AS `age_months`
++FROM `hamsters`
++WHERE `birth_date` <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND `birth_date` >= DATE_SUB(CURDATE(), INTERVAL 3 YEAR);
++
++INSERT INTO `young_animals` (`name`, `species`, `age_months`)
++SELECT `name`, 'Horse' AS `species`, TIMESTAMPDIFF(MONTH, `birth_date`, CURDATE()) AS `age_months`
++FROM `horses`
++WHERE `birth_date` <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND `birth_date` >= DATE_SUB(CURDATE(), INTERVAL 3 YEAR);
++
++-- Создаем новую таблицу "all_animals"
++CREATE TABLE `all_animals` (
++   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
++  `name` VARCHAR(50) NOT NULL,
++  `skills` VARCHAR(100) NOT NULL,
++  `birth_date` DATE NOT NULL,
++  `animal_class_id` INT UNSIGNED NOT NULL,
++  `source_table` VARCHAR(20) NOT NULL,
++  PRIMARY KEY (`id`)
++);
++
++-- Вставляем данные из таблиц `dogs`, `cats`, `donkeys`, `hamsters`, и `horses` в таблицу `all_animals`
++INSERT INTO `all_animals` (`name`, `skills`, `birth_date`, `animal_class_id`, `source_table`)
++SELECT `name`, `skills`, `birth_date`, `animal_class_id`, 'dogs' AS `source_table`
++FROM `dogs`;
++
++INSERT INTO `all_animals` (`name`, `skills`, `birth_date`, `animal_class_id`, `source_table`)
++SELECT `name`, `skills`, `birth_date`, `animal_class_id`, 'cats' AS `source_table`
++FROM `cats`;
++
++INSERT INTO `all_animals` (`name`, `skills`, `birth_date`, `animal_class_id`, `source_table`)
++SELECT `name`, `skills`, `birth_date`, `animal_class_id`, 'donkeys' AS `source_table`
++FROM `donkeys`;
++
++INSERT INTO `all_animals` (`name`, `skills`, `birth_date`, `animal_class_id`, `source_table`)
++SELECT `name`, `skills`, `birth_date`, `animal_class_id`, 'hamsters' AS `source_table`
++FROM `hamsters`;
++
++INSERT INTO `all_animals` (`name`, `skills`, `birth_date`, `animal_class_id`, `source_table`)
++SELECT `name`, `skills`, `birth_date`, `animal_class_id`, 'horses' AS `source_table`
++FROM `horses`;
+\ No newline at end of file
+Index: src/Cat.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Cat.java b/src/Cat.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Cat.java	
+@@ -0,0 +1,17 @@
++public class Cat extends Animal {
++    public Cat(String name, String skills) {
++        super(name, skills);
++    }
++
++    @Override
++    public void displayCommands() {
++        System.out.println("Команды для кошки " + getName() + ": " + getSkills());
++    }
++
++    @Override
++    public void teachNewCommand(String command) {
++        String updatedSkills = getSkills() + "," + command;
++        setSkills(updatedSkills);
++        System.out.println("Кошка " + getName() + " научилась новой команде: " + command);
++    }
++}
+\ No newline at end of file
+Index: src/Dog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Dog.java b/src/Dog.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Dog.java	
+@@ -0,0 +1,18 @@
++// Класс Dog наследуется от класса Animal
++public class Dog extends Animal {
++    public Dog(String name, String skills) {
++        super(name, skills);
++    }
++
++    @Override
++    public void displayCommands() {
++        System.out.println("Список команд для собаки:");
++        System.out.println(getSkills());
++    }
++
++    @Override
++    public void teachNewCommand(String command) {
++        String updatedSkills = getSkills() + "," + command;
++        setSkills(updatedSkills);
++    }
++}
+\ No newline at end of file
+Index: src/Menu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Menu.java b/src/Menu.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Menu.java	
+@@ -0,0 +1,94 @@
++// Класс Menu для отображения меню и взаимодействия с пользователем
++import java.util.InputMismatchException;
++import java.util.Scanner;
++
++public class Menu {
++    private final Database database;
++    private final Scanner scanner;
++
++    public Menu(Database database) {
++        this.database = database;
++        scanner = new Scanner(System.in);
++    }
++
++    public void displayMenu() {
++        while (true) {
++            try {
++                System.out.println("Меню:");
++                System.out.println("1. Добавить новое животное");
++                System.out.println("2. Показать список всех животных");
++                System.out.println("3. Просмотреть список команд животного");
++                System.out.println("4. Обучить животное новой команде");
++                System.out.println("0. Выход");
++                System.out.print("Выберите пункт меню: ");
++                int choice = scanner.nextInt();
++                scanner.nextLine();
++
++                switch (choice) {
++                    case 1 -> addNewAnimal();
++                    case 2 -> database.displayAllAnimals();
++                    case 3 -> displayAnimalCommands();
++                    case 4 -> teachNewCommand();
++                    case 0 -> {
++                        System.out.println("Программа завершена.");
++                        return;
++                    }
++                    default -> System.out.println("Неверный выбор. Попробуйте снова.");
++                }
++            } catch (InputMismatchException e) {
++                System.out.println("Ошибка: неверный формат ввода. Попробуйте снова.");
++                scanner.nextLine(); // Очистка буфера сканера после ошибочного ввода
++            }
++        }
++    }
++
++
++    private void addNewAnimal() {
++        System.out.println("Введите имя животного:");
++        String name = scanner.nextLine();
++        System.out.println("Введите список команд через запятую:");
++        String skills = scanner.nextLine();
++
++        System.out.println("Выберите класс животного:");
++        System.out.println("1. Собака");
++        System.out.println("2. Кошка");
++        System.out.println("3. Хомяк");
++        System.out.println("4. Осёл");
++        System.out.println("5. Конь");
++        int animalClass = scanner.nextInt();
++        scanner.nextLine();
++
++        Animal animal;
++        switch (animalClass) {
++            case 1 -> animal = new Dog(name, skills);
++            case 2 -> animal = new Cat(name, skills);
++            case 3 -> animal = new Hamster(name, skills);
++            case 4 -> animal = new Donkey(name, skills);
++            case 5 -> animal = new Horse(name, skills);
++            default -> {
++                System.out.println("Неверный выбор класса животного.");
++                return;
++            }
++        }
++
++        database.addAnimal(animal);
++        System.out.println("Животное успешно добавлено в базу данных.");
++    }
++
++    private void displayAnimalCommands() {
++        System.out.println("Введите имя животного:");
++        String name = scanner.nextLine();
++
++        database.displayAnimalCommands(name);
++    }
++
++    private void teachNewCommand() {
++        System.out.println("Введите имя животного:");
++        String name = scanner.nextLine();
++        System.out.println("Введите новые команды через запятую:");
++        String command = scanner.nextLine();
++
++        database.teachNewCommand(name, command);
++        System.out.println("Команда успешно добавлена для животного.");
++    }
++}
+\ No newline at end of file
+Index: src/Horse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Horse.java b/src/Horse.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Horse.java	
+@@ -0,0 +1,18 @@
++// Класс Horse наследуется от класса Animal
++public class Horse extends Animal {
++    public Horse(String name, String skills) {
++        super(name, skills);
++    }
++
++    @Override
++    public void displayCommands() {
++        System.out.println("Список команд для коня:");
++        System.out.println(getSkills());
++    }
++
++    @Override
++    public void teachNewCommand(String command) {
++        String updatedSkills = getSkills() + "," + command;
++        setSkills(updatedSkills);
++    }
++}
+\ No newline at end of file
+Index: src/Animal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Animal.java b/src/Animal.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Animal.java	
+@@ -0,0 +1,25 @@
++public abstract class Animal {
++    private String name;
++    private String skills;
++
++    public Animal(String name, String skills) {
++        this.name = name;
++        this.skills = skills;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public String getSkills() {
++        return skills;
++    }
++
++    public void setSkills(String updatedSkills) {
++        this.skills = updatedSkills;
++    }
++
++    public abstract void displayCommands();
++
++    public abstract void teachNewCommand(String command);
++}
+\ No newline at end of file
+Index: src/Donkey.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Donkey.java b/src/Donkey.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Donkey.java	
+@@ -0,0 +1,18 @@
++// Класс Donkey наследуется от класса Animal
++public class Donkey extends Animal {
++    public Donkey(String name, String skills) {
++        super(name, skills);
++    }
++
++    @Override
++    public void displayCommands() {
++        System.out.println("Список команд для осла:");
++        System.out.println(getSkills());
++    }
++
++    @Override
++    public void teachNewCommand(String command) {
++        String updatedSkills = getSkills() + "," + command;
++        setSkills(updatedSkills);
++    }
++}
+\ No newline at end of file
+Index: src/Hamster.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Hamster.java b/src/Hamster.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Hamster.java	
+@@ -0,0 +1,18 @@
++// Класс Hamster наследуется от класса Animal
++public class Hamster extends Animal {
++    public Hamster(String name, String skills) {
++        super(name, skills);
++    }
++
++    @Override
++    public void displayCommands() {
++        System.out.println("Список команд для хомяка:");
++        System.out.println(getSkills());
++    }
++
++    @Override
++    public void teachNewCommand(String command) {
++        String updatedSkills = getSkills() + "," + command;
++        setSkills(updatedSkills);
++    }
++}
+\ No newline at end of file
+Index: src/Database.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Database.java b/src/Database.java
+new file mode 100644
+--- /dev/null	
++++ b/src/Database.java	
+@@ -0,0 +1,116 @@
++// Класс Database для хранения и управления животными
++import java.io.*;
++import java.util.*;
++
++public class Database {
++    private final List<Animal> animals;
++    private static final String FILE_PATH = "src/db/Animals_db.sql";
++
++    public Database() {
++        animals = new ArrayList<>();
++        loadDatabase();
++    }
++
++    public void addAnimal(Animal animal) {
++        animals.add(animal);
++        saveDatabase();
++    }
++
++    public void displayAnimalCommands(String name) {
++        for (Animal animal : animals) {
++            if (animal.getName().equals(name)) {
++                animal.displayCommands();
++                return;
++            }
++        }
++        System.out.println("Животное с именем " + name + " не найдено.");
++    }
++
++
++
++    public void teachNewCommand(String name, String command) {
++        for (Animal animal : animals) {
++            if (animal.getName().equals(name)) {
++                String[] commands = command.split(",");
++                for (int i = 0; i < commands.length; i++) {
++                    String trimmedCommand = commands[i].trim();
++                    commands[i] = trimmedCommand;
++                }
++                animal.teachNewCommand(command);
++                saveDatabase();
++                System.out.println("Команда успешно добавлена для животного.");
++                return;
++            }
++        }
++        System.out.println("Животное с именем " + name + " не найдено.");
++    }
++
++
++    private void loadDatabase() {
++        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
++            String line;
++            while ((line = reader.readLine()) != null) {
++                String[] data = line.split(",");
++                if (data.length >= 3) {
++                    String className = data[0];
++                    String name = data[1];
++                    String skills = String.join(",", Arrays.copyOfRange(data, 2, data.length));
++
++                    Animal animal;
++                    switch (className) {
++                        case "Dog" -> animal = new Dog(name, skills);
++                        case "Cat" -> animal = new Cat(name, skills);
++                        case "Hamster" -> animal = new Hamster(name, skills);
++                        case "Donkey" -> animal = new Donkey(name, skills);
++                        case "Horse" -> animal = new Horse(name, skills);
++                        default -> {
++                            System.out.println("Неизвестный класс животного: " + className);
++                            continue;
++                        }
++                    }
++                    animals.add(animal);
++                } else {
++                    System.out.println("Некорректные данные в файле: " + line);
++                }
++            }
++            System.out.println("База данных успешно загружена.");
++        } catch (IOException e) {
++            System.out.println("Ошибка при чтении базы данных: " + e.getMessage());
++        }
++    }
++
++
++    public void displayAllAnimals() {
++        try {
++            File file = new File(FILE_PATH);
++            Scanner fileScanner = new Scanner(file);
++
++            while (fileScanner.hasNextLine()) {
++                String animalData = fileScanner.nextLine();
++                System.out.println(animalData);
++            }
++
++            fileScanner.close();
++        } catch (FileNotFoundException e) {
++            System.out.println("Файл с данными о животных не найден.");
++        }
++    }
++
++    private void saveDatabase() {
++        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
++            for (Animal animal : animals) {
++                String className = animal.getClass().getSimpleName();
++                String name = animal.getName();
++                String skills = animal.getSkills().replaceAll(",\\s+", ",");
++
++                String line = className + "," + name + "," + skills;
++                writer.write(line);
++                writer.newLine();
++            }
++            System.out.println("База данных успешно сохранена.");
++        } catch (IOException e) {
++            System.out.println("Ошибка при сохранении базы данных: " + e.getMessage());
++        }
++    }
++
++}
+\ No newline at end of file
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	
++++ b/src/Main.java	
+@@ -1,15 +1,8 @@
+-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
++// Класс Main для запуска программы
+ public class Main {
+     public static void main(String[] args) {
+-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+-        // to see how IntelliJ IDEA suggests fixing it.
+-        System.out.printf("Hello and welcome!");
+-
+-        for (int i = 1; i <= 5; i++) {
+-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
+-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
+-            System.out.println("i = " + i);
+-        }
++        Database database = new Database();
++        Menu menu = new Menu(database);
++        menu.displayMenu();
+     }
+ }
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/misc.xml	
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="20" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/libraries/couchbase_jdbc_n1ql.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/couchbase_jdbc_n1ql.xml b/.idea/libraries/couchbase_jdbc_n1ql.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/libraries/couchbase_jdbc_n1ql.xml	
+@@ -0,0 +1,10 @@
++<component name="libraryTable">
++  <library name="couchbase.jdbc.n1ql" type="repository">
++    <properties maven-id="com.couchbase.jdbc:jdbc-n1ql:1.0-BETA" />
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/com/couchbase/jdbc/jdbc-n1ql/1.0-BETA/jdbc-n1ql-1.0-BETA.jar!/" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	
++++ b/.idea/.gitignore	
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/modules.xml	
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/FinalTest.iml" filepath="$PROJECT_DIR$/FinalTest.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: FinalTest.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/FinalTest.iml b/FinalTest.iml
+new file mode 100644
+--- /dev/null	
++++ b/FinalTest.iml	
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="couchbase.jdbc.n1ql" level="project" />
++  </component>
++</module>
+\ No newline at end of file
