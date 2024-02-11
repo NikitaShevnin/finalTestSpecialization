@@ -1,0 +1,83 @@
+nikita_ed@ContCource2:~$ cat > Pets.txt
+   собаки, кошки, хомяки
+
+nikita_ed@ContCource2:~$ cat > "Pack_animals.txt"
+   лошади, верблюды, ослы
+
+nikita_ed@ContCource2:~$ ls
+Calculator.java  Documents  home   mycontainer       Pictures  snap
+Desktop          Downloads  hw4gb  Pack_animals.txt  Public    Templates
+dockerfile       gb         Music  Pets.txt          sem5      Videos
+
+nikita_ed@ContCource2:~$ cat Pets "Pack animals" > combined.txt
+cat: Pets: No such file or directory
+cat: 'Pack animals': No such file or directory
+nikita_ed@ContCource2:~$ cat Pets Pack animals > combined.txt
+cat: Pets: No such file or directory
+cat: Pack: No such file or directory
+cat: animals: No such file or directory
+nikita_ed@ContCource2:~$ cat Pets.txt "Pack_animals.txt" > combined.txt
+nikita_ed@ContCource2:~$ cat combined.txt
+   собаки, кошки, хомяки
+   лошади, верблюды, ослы
+nikita_ed@ContCource2:~$ mv combined.txt "Human_Friends"
+nikita_ed@ContCource2:~$ ls
+Calculator.java  Downloads      hw4gb             Pets.txt  snap
+Desktop          gb             Music             Pictures  Templates
+dockerfile       home           mycontainer       Public    Videos
+Documents        Human_Friends  Pack_animals.txt  sem5
+nikita_ed@ContCource2:~$ mkdir new_directory
+nikita_ed@ContCource2:~$ mv "Human_Friends" new_directory/
+nikita_ed@ContCource2:~$ ls new_directory/
+Human_Friends
+nikita_ed@ContCource2:~$ # Zadanie 1 i 2 is done
+
+
+nikita_ed@ContCource2:~$ sudo apt-get install mysql-server
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+mysql-server is already the newest version (8.0.35-0ubuntu0.22.04.1).
+0 upgraded, 0 newly installed, 0 to remove and 47 not upgraded.
+nikita_ed@ContCource2:~$ sudo apt-get install mysql-client
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+mysql-client
+0 upgraded, 1 newly installed, 0 to remove and 47 not upgraded.
+Need to get 9 354 B of archives.
+After this operation, 35,8 kB of additional disk space will be used.
+Get:1 http://ru.archive.ubuntu.com/ubuntu jammy-updates/main amd64 mysql-client all 8.0.35-0ubuntu0.22.04.1 [9 354 B]
+Fetched 9 354 B in 0s (95,3 kB/s)           
+Selecting previously unselected package mysql-client.
+(Reading database ... 238352 files and directories currently installed.)
+Preparing to unpack .../mysql-client_8.0.35-0ubuntu0.22.04.1_all.deb ...
+Unpacking mysql-client (8.0.35-0ubuntu0.22.04.1) ...
+Setting up mysql-client (8.0.35-0ubuntu0.22.04.1) ...
+nikita_ed@ContCource2:~$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.18-1_all.deb
+--2024-01-28 17:52:21--  https://dev.mysql.com/get/mysql-apt-config_0.8.18-1_all.deb
+Resolving dev.mysql.com (dev.mysql.com)... 104.81.229.11, 2001:2030:21:19e::2e31, 2001:2030:21:1a9::2e31
+Connecting to dev.mysql.com (dev.mysql.com)|104.81.229.11|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://repo.mysql.com//mysql-apt-config_0.8.18-1_all.deb [following]
+--2024-01-28 17:52:22--  https://repo.mysql.com//mysql-apt-config_0.8.18-1_all.deb
+Resolving repo.mysql.com (repo.mysql.com)... 23.210.173.94, 2001:2030:4f:80::1d68, 2001:2030:4f:a3::1d68
+Connecting to repo.mysql.com (repo.mysql.com)|23.210.173.94|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 35516 (35K) [application/x-debian-package]
+Saving to: ‘mysql-apt-config_0.8.18-1_all.deb.1’
+
+mysql-apt-config_0 100%[===============>]  34,68K  --.-KB/s    in 0,03s   
+
+2024-01-28 17:52:22 (1,16 MB/s) - ‘mysql-apt-config_0.8.18-1_all.deb.1’ saved [35516/35516]
+
+
+nikita_ed@ContCource2:~$ sudo dpkg -i mysql-apt-config_0.8.18-1_all.deb
+(Reading database ... 238354 files and directories currently installed.)
+Preparing to unpack mysql-apt-config_0.8.18-1_all.deb ...
+Unpacking mysql-apt-config (0.8.18-1) over (0.8.18-1) ...
+Setting up mysql-apt-config (0.8.18-1) ...
+Warning: apt-key should not be used in scripts (called from postinst maintainerscript of the package mysql-apt-config)
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+OK
